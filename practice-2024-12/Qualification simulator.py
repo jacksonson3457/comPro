@@ -2,11 +2,10 @@ def isQualify(confirmed, participant, maxConfirm, maxAbroadConfirm, abroadConfir
     if confirmed < maxConfirm:
         if participant == 'a':
             return 'Yes'
-        elif participant == 'b':
-            if abroadConfirmed < maxAbroadConfirm:
-                return 'Yes'
-            else:
-                return 'No'
+        if participant == 'b' and abroadConfirmed < maxAbroadConfirm:
+            return 'Yes'
+        else:
+            return 'No'
     else:
         return 'No'
 
@@ -20,18 +19,9 @@ confirmed = 0
 abroadConfirmed = 0
 maxConfirm = A + B
 for x in participants:
-    if x == 'a':
-        if isQualify(confirmed, x, maxConfirm, B, abroadConfirmed) == 'Yes':
-            confirmed += 1
-            print('Yes')
-        else:
-            print('No')
-    elif x == 'b':
-        if isQualify(confirmed, x, maxConfirm, B, abroadConfirmed) == 'Yes':
-            confirmed += 1
+    result = isQualify(confirmed, x, maxConfirm, B, abroadConfirmed)
+    print(result)
+    if result == 'Yes':
+        confirmed += 1
+        if x == 'b':
             abroadConfirmed += 1
-            print('Yes')
-        else:
-            print('No')
-    else:
-        print('No')
